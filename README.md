@@ -31,15 +31,35 @@ Shows how organizations can:
 
 This demo repository shows NixLine pure upstream consumption. Policy files are materialized from the baseline without any local configuration.
 
-```bash
-# Sync all default policies
-nix run github:NixLine-org/nixline-baseline#sync
+**Initial Setup (if policies are out of sync):**
 
+If CI is failing with "Validation failed", this means policies need to be synced from the baseline. The automated workflow will handle this:
+
+```bash
+# Option 1: Trigger policy sync workflow manually (recommended)
+gh workflow run "Policy Sync" --repo NixLine-org/nixline-demo3
+
+# Option 2: Manual sync (for testing only)
+nix run github:NixLine-org/nixline-baseline#sync
+```
+
+**What happens with the automated workflow:**
+1. Policy sync workflow detects out-of-sync policies
+2. Creates a PR with updated policy files
+3. Auto-approval workflow approves the PR automatically
+4. Auto-merge occurs when CI checks pass
+5. Subsequent CI runs will pass with synchronized policies
+
+**Manual commands for testing:**
+```bash
 # Check if policies are current
 nix run github:NixLine-org/nixline-baseline#check
 
 # Preview what would change
 nix run github:NixLine-org/nixline-baseline#sync -- --dry-run
+
+# Manual sync (creates local changes, not recommended for production)
+nix run github:NixLine-org/nixline-baseline#sync
 ```
 
 ## How It Works
