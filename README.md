@@ -89,11 +89,12 @@ on:
 
 jobs:
   sync:
-    uses: NixLine-org/.github/.github/workflows/nixline-policy-sync.yml@stable
+    uses: NixLine-org/.github/.github/workflows/nixline-policy-sync-pr.yml@stable
     with:
       consumption_pattern: direct
       baseline_repo: NixLine-org/nixline-baseline
       baseline_ref: stable
+      create_pr: true
       auto_approve: true
 ```
 
