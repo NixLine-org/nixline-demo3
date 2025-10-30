@@ -12,10 +12,11 @@ permissions:
 
 jobs:
   sync:
-    uses: NixLine-org/.github/.github/workflows/nixline-policy-sync-pr.yml@stable
+    uses: NixLine-org/.github/.github/workflows/nixline-policy-sync-smart.yml@stable
     with:
       consumption_pattern: direct
       baseline_repo: NixLine-org/nixline-baseline
-      baseline_ref: stable
-      create_pr: true
-      auto_approve: true
+      baseline_ref: main
+      prefer_pr: true          # Always create PR (demo3 uses branch protection)
+      auto_merge: true         # Enable auto-merge on PRs
+      stagger_minutes: 5       # Random delay to prevent rate limits
