@@ -1,9 +1,9 @@
-# NixLine Demo3 - Upstream Consumption with Auto-Approved PRs
+# Lineage Demo3 - Upstream Consumption with Auto-Approved PRs
 
-This repository demonstrates **pure upstream consumption** of [NixLine](https://github.com/NixLine-org/nixline-baseline) with automated policy updates via auto-approved pull requests.
+This repository demonstrates **pure upstream consumption** of [Lineage](https://github.com/Lineage-org/lineage-baseline) with automated policy updates via auto-approved pull requests.
 
 Shows how organizations can:
-- Use NixLine baseline as upstream without forking
+- Use Lineage baseline as upstream without forking
 - Receive automatic policy updates through GitHub's auto-merge
 - Maintain zero maintenance overhead for governance policies
 - Configure branch protection with auto-approval workflows
@@ -12,7 +12,7 @@ Shows how organizations can:
 
 **Pure Upstream Consumption**
 - No local configuration files or flakes
-- Direct baseline calls via `nix run github:NixLine-org/nixline-baseline#sync`
+- Direct baseline calls via `nix run github:Lineage-org/lineage-baseline#sync`
 - Zero maintenance fork-free architecture
 
 **Automated Policy Updates**
@@ -29,7 +29,7 @@ Shows how organizations can:
 
 ## Quick Start
 
-This demo repository shows NixLine pure upstream consumption. Policy files are materialized from the baseline without any local configuration.
+This demo repository shows Lineage pure upstream consumption. Policy files are materialized from the baseline without any local configuration.
 
 **Initial Setup (if policies are out of sync):**
 
@@ -37,10 +37,10 @@ If CI is failing with "Validation failed", this means policies need to be synced
 
 ```bash
 # Option 1: Trigger policy sync workflow manually (recommended)
-gh workflow run "Policy Sync" --repo NixLine-org/nixline-demo3
+gh workflow run "Policy Sync" --repo Lineage-org/lineage-demo3
 
 # Option 2: Manual sync (for testing only)
-nix run github:NixLine-org/nixline-baseline#sync
+nix run github:Lineage-org/lineage-baseline#sync
 ```
 
 **What happens with the automated workflow:**
@@ -53,13 +53,13 @@ nix run github:NixLine-org/nixline-baseline#sync
 **Manual commands for testing:**
 ```bash
 # Check if policies are current
-nix run github:NixLine-org/nixline-baseline#check
+nix run github:Lineage-org/lineage-baseline#check
 
 # Preview what would change
-nix run github:NixLine-org/nixline-baseline#sync -- --dry-run
+nix run github:Lineage-org/lineage-baseline#sync -- --dry-run
 
 # Manual sync (creates local changes, not recommended for production)
-nix run github:NixLine-org/nixline-baseline#sync
+nix run github:Lineage-org/lineage-baseline#sync
 ```
 
 ## How It Works
@@ -67,7 +67,7 @@ nix run github:NixLine-org/nixline-baseline#sync
 This repository demonstrates the **pure upstream consumption** pattern with automated PR workflows:
 
 **Direct Baseline Integration**
-- Uses `nix run github:NixLine-org/nixline-baseline#command` for all operations
+- Uses `nix run github:Lineage-org/lineage-baseline#command` for all operations
 - No local flake.nix or configuration files
 - Baseline repository serves as single source of truth
 
@@ -89,10 +89,10 @@ on:
 
 jobs:
   sync:
-    uses: NixLine-org/.github/.github/workflows/nixline-policy-sync-pr.yml@stable
+    uses: Lineage-org/.github/.github/workflows/lineage-policy-sync-pr.yml@stable
     with:
       consumption_pattern: direct
-      baseline_repo: NixLine-org/nixline-baseline
+      baseline_repo: Lineage-org/lineage-baseline
       baseline_ref: stable
       create_pr: true
       auto_approve: true
@@ -122,7 +122,7 @@ For enterprise environments requiring change approval, configure branch protecti
 
 ```yaml
 # Required status checks
-- nixline-ci
+- lineage-ci
 
 # Require pull request reviews before merging
 require_pull_request_reviews: true
@@ -187,10 +187,10 @@ auto-approve:
 **Environment-Specific Policies**
 ```bash
 # Production requires stricter policies
-nix run github:NixLine-org/nixline-baseline#sync -- --packs security,license,codeowners
+nix run github:Lineage-org/lineage-baseline#sync -- --packs security,license,codeowners
 
 # Development allows more flexibility
-nix run github:NixLine-org/nixline-baseline#sync -- --exclude dependabot
+nix run github:Lineage-org/lineage-baseline#sync -- --exclude dependabot
 ```
 
 **Integration with External Systems**
@@ -210,6 +210,6 @@ This approach solves the organizational governance automation challenge:
 
 **Traditional Governance**: Policy updates require manual coordination across hundreds of repositories, creating bottlenecks and inconsistent application.
 
-**NixLine Auto-Approval**: Policy updates from the centralized baseline automatically create tested, approved pull requests across all consumer repositories, ensuring instant organization-wide consistency.
+**Lineage Auto-Approval**: Policy updates from the centralized baseline automatically create tested, approved pull requests across all consumer repositories, ensuring instant organization-wide consistency.
 
 The result is enterprise-grade governance automation with complete audit trails and zero maintenance overhead for development teams.

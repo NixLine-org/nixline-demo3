@@ -12,10 +12,10 @@ permissions:
 
 jobs:
   sync:
-    uses: NixLine-org/.github/.github/workflows/nixline-policy-sync-smart.yml@stable
+    uses: Lineage-org/.github/.github/workflows/lineage-policy-sync-smart.yml@stable
     with:
       consumption_pattern: direct
-      baseline_repo: NixLine-org/nixline-baseline
+      baseline_repo: Lineage-org/lineage-baseline
       baseline_ref: main
       prefer_pr: true          # Always create PR (demo3 uses branch protection)
       auto_merge: true         # Enable auto-merge on PRs

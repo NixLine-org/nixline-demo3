@@ -1,5 +1,5 @@
-# Dependabot configuration - Generated from nixline-baseline
-# To customize, edit .nixline.toml [packs.dependabot] section
+# Dependabot configuration - Generated from lineage-baseline
+# To customize, edit .lineage.toml [packs.dependabot] section
 
 version: 2
 

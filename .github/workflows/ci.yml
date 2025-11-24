@@ -17,4 +17,4 @@ jobs:
         uses: cachix/install-nix-action@v31
 
       - name: Verify policies are in sync
-        run: nix run github:NixLine-org/nixline-baseline#check
+        run: nix run github:Lineage-org/lineage-baseline#check
