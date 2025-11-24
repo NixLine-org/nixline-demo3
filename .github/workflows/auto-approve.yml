@@ -6,7 +6,7 @@ on:
 
 jobs:
   auto-approve:
-    uses: NixLine-org/.github/.github/workflows/nixline-auto-approve.yml@stable
+    uses: Lineage-org/.github/.github/workflows/lineage-auto-approve.yml@stable
     with:
       pr_title_pattern: "Policy Sync"
       actor_filter: "github-actions[bot]"
